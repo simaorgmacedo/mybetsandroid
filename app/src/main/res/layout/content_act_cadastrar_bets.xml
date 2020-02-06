@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ActCadastrarBets"
+    tools:showIn="@layout/activity_act_cadastrar_bets">
+
+    <TextView
+        android:id="@+id/txtMercado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Mercado"
+        app:layout_constraintEnd_toEndOf="@+id/txtResultado"
+        app:layout_constraintStart_toStartOf="@+id/txtResultado"
+        app:layout_constraintTop_toBottomOf="@+id/cbWin" />
+
+    <TextView
+        android:id="@+id/txtResultado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Resultado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtAposta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Valor Apostado"
+        app:layout_constraintEnd_toEndOf="@+id/edtMercado"
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toStartOf="@+id/edtMercado"
+        app:layout_constraintTop_toBottomOf="@+id/edtMercado" />
+
+    <TextView
+        android:id="@+id/txtRetorno"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Valor Retornado"
+        app:layout_constraintEnd_toEndOf="@+id/edtAposta"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtAposta"
+        app:layout_constraintTop_toBottomOf="@+id/edtAposta" />
+
+    <TextView
+        android:id="@+id/txtOdd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="ODD"
+        app:layout_constraintEnd_toEndOf="@+id/edtRetorno"
+        app:layout_constraintStart_toStartOf="@+id/edtRetorno"
+        app:layout_constraintTop_toBottomOf="@+id/edtRetorno" />
+
+    <TextView
+        android:id="@+id/txtData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Data"
+        app:layout_constraintEnd_toEndOf="@+id/edtOdd"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtOdd"
+        app:layout_constraintTop_toBottomOf="@+id/edtOdd" />
+
+    <TextView
+        android:id="@+id/txtDescricao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Descrição"
+        app:layout_constraintEnd_toEndOf="@+id/edtData"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtData"
+        app:layout_constraintTop_toBottomOf="@+id/edtData" />
+
+    <CheckBox
+        android:id="@+id/cbWin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onCheckboxClicked"
+        android:text="Win"
+        app:layout_constraintStart_toStartOf="@+id/txtResultado"
+        app:layout_constraintTop_toBottomOf="@+id/txtResultado" />
+
+    <EditText
+        android:id="@+id/edtMercado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/txtMercado"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toStartOf="@+id/txtMercado"
+        app:layout_constraintTop_toBottomOf="@+id/txtMercado" />
+
+    <EditText
+        android:id="@+id/edtAposta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/txtAposta"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/txtAposta"
+        app:layout_constraintTop_toBottomOf="@+id/txtAposta" />
+
+    <EditText
+        android:id="@+id/edtRetorno"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/txtRetorno"
+        app:layout_constraintStart_toStartOf="@+id/txtRetorno"
+        app:layout_constraintTop_toBottomOf="@+id/txtRetorno" />
+
+    <EditText
+        android:id="@+id/edtOdd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/txtOdd"
+        app:layout_constraintStart_toStartOf="@+id/txtOdd"
+        app:layout_constraintTop_toBottomOf="@+id/txtOdd" />
+
+    <EditText
+        android:id="@+id/edtData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/txtData"
+        app:layout_constraintStart_toStartOf="@+id/txtData"
+        app:layout_constraintTop_toBottomOf="@+id/txtData" />
+
+    <EditText
+        android:id="@+id/edtDescricao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/txtDescricao"
+        app:layout_constraintStart_toStartOf="@+id/txtDescricao"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescricao" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
