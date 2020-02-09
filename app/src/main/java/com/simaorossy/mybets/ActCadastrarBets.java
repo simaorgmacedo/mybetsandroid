@@ -1,15 +1,20 @@
 package com.simaorossy.mybets;
 
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.simaorossy.mybets.database.DadosOpenHelper;
 import com.simaorossy.mybets.dominio.entidade.Bets;
+import com.simaorossy.mybets.dominio.repositorio.BetsRepositorio;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.text.TextUtils;
 import android.view.Menu;
@@ -31,6 +36,10 @@ public class ActCadastrarBets extends AppCompatActivity {
     private EditText edtDescricao;
     public  String resultado = "loss";
     Bets bets = new Bets();
+    private BetsRepositorio betsRepositorio;
+    private ConstraintLayout layoutAct_cadastrar_bets;
+    private DadosOpenHelper dadosOpenHelper;
+    private SQLiteDatabase conexao;
 
 
     @Override
@@ -48,6 +57,31 @@ public class ActCadastrarBets extends AppCompatActivity {
         edtData     = findViewById(R.id.edtData);
         edtDescricao= findViewById(R.id.edtDescricao);
 
+        layoutAct_cadastrar_bets = findViewById(R.id.layoutContent_act_cadastrar_bets);
+
+        criarConexao();
+
+    }
+
+    private void criarConexao(){
+
+
+        try{
+
+            dadosOpenHelper = new DadosOpenHelper(this);
+            conexao = dadosOpenHelper.getWritableDatabase();
+            Snackbar.make(layoutAct_cadastrar_bets,"banco de dados criado com sucesso", Snackbar.LENGTH_LONG).setAction("OK",null).show();
+
+            betsRepositorio = new BetsRepositorio(conexao);
+
+
+        }catch (SQLException ex){
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setTitle("ERRO");
+            dlg.setMessage(ex.getMessage());
+            dlg.show();
+
+        }
     }
 
 
@@ -74,8 +108,28 @@ public class ActCadastrarBets extends AppCompatActivity {
     public void confirma(){
         if(validaCampo() == false){
 
-            Toast.makeText(this, bets.resultado + bets.mercado + bets.aposta + bets.retorno
-                    + bets.odd + bets.data + bets.descricao, Toast.LENGTH_LONG).show();
+            // AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            // dlg.setTitle("ERRO");
+            // dlg.setMessage("RESULTADO " + bets.resultado +", MERCADO " + bets.mercado+", APOSTA " + bets.aposta+", RETORNO "
+            //      + bets.retorno+", ODD " + bets.odd+", DATA " + bets.data+", DESCRICAO " +bets.descricao);
+            //       dlg.show();
+
+
+            try{
+               betsRepositorio.inserir(bets);
+                finish();
+
+
+
+
+
+            }catch (SQLException ex){
+                AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+                dlg.setTitle("ERRO");
+                dlg.setMessage(ex.getMessage());
+                dlg.show();
+            }
+
 
         }
     }
@@ -85,14 +139,34 @@ public class ActCadastrarBets extends AppCompatActivity {
     //se estiver tudo ok vai retornar false
     public boolean validaCampo(){
         boolean res = false;
-
+        String apostaa   = edtAposta.getText().toString();
+        String retornoo  = edtRetorno.getText().toString();
+        String oddd       = edtOdd.getText().toString();
 
         String mercado   = edtMercado.getText().toString();
-        double aposta    = Double.parseDouble(edtAposta.getText().toString());
-        double retorno   = Double.parseDouble(edtRetorno.getText().toString());
-        double odd       = Double.parseDouble(edtOdd.getText().toString());
+        double aposta    = 0;
+        double retorno   = 0;
+        double odd       = 0;
         String data      = edtData.getText().toString();
         String descricao = edtDescricao.getText().toString();
+
+        if(campoVazio(apostaa)){
+            aposta = 0;
+        }else{
+            aposta = Double.parseDouble(apostaa);
+        }
+
+        if (campoVazio(retornoo)){
+            retorno = 0;
+        }else{
+            retorno = Double.parseDouble(retornoo);
+        }
+
+        if(campoVazio(oddd)){
+            odd = 0;
+        }else{
+            odd = Double.parseDouble(oddd);
+        }
 
         bets.resultado = resultado;
         bets.mercado   = mercado;
@@ -114,7 +188,7 @@ public class ActCadastrarBets extends AppCompatActivity {
             dlg.setNeutralButton("OK",null);
             dlg.show();
         }else
-            if(campoVazio(String.valueOf(aposta)) ){
+            if(aposta == 0 ){
                 res = true;
                 edtAposta.requestFocus();
                 dlg.setTitle("Aviso");
@@ -122,7 +196,7 @@ public class ActCadastrarBets extends AppCompatActivity {
                 dlg.setNeutralButton("OK", null);
                 dlg.show();
             }else
-                if(campoVazio(String.valueOf(odd)) ){
+                if( odd == 0 ){
                     res = true;
                     edtOdd.requestFocus();
                     dlg.setTitle("Aviso");

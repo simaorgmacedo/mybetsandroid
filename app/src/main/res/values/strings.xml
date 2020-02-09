@@ -6,4 +6,6 @@
     <string name="title_activity_act_editar_bets">ActEditarBets</string>
     <string name="title_menu_ok">ok</string>
     <string name="menu_action_cadastrar">cadastrar</string>
+    <string name="txtMercado">Mercado</string>
+    <string name="txtResultado">Resultado</string>
 </resources>
