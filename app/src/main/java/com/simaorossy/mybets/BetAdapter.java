@@ -1,11 +1,14 @@
 package com.simaorossy.mybets;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.simaorossy.mybets.dominio.entidade.Bets;
@@ -31,7 +34,7 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
 
         View view = layoutInflater.inflate(R.layout.linha_bet, parent, false);
 
-        ViewHolderBets holderBets = new ViewHolderBets(view);
+        ViewHolderBets holderBets = new ViewHolderBets(view, parent.getContext());
 
         return holderBets;
     }
@@ -44,7 +47,7 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
 
             Bets bet = dados.get(position);
 
-            holder.txtValorApostadoRCV.setText((int) bet.aposta);
+            holder.txtValorApostadoRCV.setText(String.valueOf(bet.aposta));
             holder.txtDataRCV.setText(bet.data);
         }
 
@@ -52,7 +55,7 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return dados.size();
     }
 
 
@@ -65,10 +68,24 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
         public TextView txtValorApostadoRCV;
         public TextView txtDataRCV;
 
-        public ViewHolderBets(@NonNull View itemView) {
+        public ViewHolderBets(@NonNull View itemView, final Context context) {
             super(itemView);
             txtValorApostadoRCV = (TextView) itemView.findViewById(R.id.txtValorApostadoRCV);
             txtDataRCV          = (TextView) itemView.findViewById(R.id.txtDataRCV);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(dados.size() > 0){
+                        Bets bets = dados.get(getLayoutPosition());
+
+                        Intent it = new Intent(context, ActVisualizarBets.class);
+                        it.putExtra("BET", bets);
+                        ((AppCompatActivity)context).startActivityForResult(it,1);
+
+                    }
+                }
+            });
 
         }
     }

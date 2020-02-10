@@ -1,6 +1,8 @@
 package com.simaorossy.mybets.dominio.entidade;
 
-public class Bets {
+import java.io.Serializable;
+
+public class Bets implements Serializable {
 
     public int    codigo;
     public String resultado;

@@ -63,6 +63,9 @@ public class ActCadastrarBets extends AppCompatActivity {
 
     }
 
+
+
+
     private void criarConexao(){
 
 
@@ -107,20 +110,14 @@ public class ActCadastrarBets extends AppCompatActivity {
 
     public void confirma(){
         if(validaCampo() == false){
-
             // AlertDialog.Builder dlg = new AlertDialog.Builder(this);
             // dlg.setTitle("ERRO");
             // dlg.setMessage("RESULTADO " + bets.resultado +", MERCADO " + bets.mercado+", APOSTA " + bets.aposta+", RETORNO "
             //      + bets.retorno+", ODD " + bets.odd+", DATA " + bets.data+", DESCRICAO " +bets.descricao);
             //       dlg.show();
-
-
             try{
                betsRepositorio.inserir(bets);
-                finish();
-
-
-
+               finish();
 
 
             }catch (SQLException ex){
@@ -247,7 +244,7 @@ public class ActCadastrarBets extends AppCompatActivity {
 
             case R.id.menu_cadastrar:
                 confirma();
-
+                break;
         }
 
         return super.onOptionsItemSelected(item);

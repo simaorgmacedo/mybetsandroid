@@ -11,6 +11,7 @@ import com.simaorossy.mybets.database.DadosOpenHelper;
 import com.simaorossy.mybets.dominio.entidade.Bets;
 import com.simaorossy.mybets.dominio.repositorio.BetsRepositorio;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -31,6 +32,7 @@ public class ActMain extends AppCompatActivity {
     private RecyclerView recyclerView;
     private BetAdapter betAdapter;
     private BetsRepositorio betsRepositorio;
+    private Bets b;
 
 
     @Override
@@ -39,6 +41,10 @@ public class ActMain extends AppCompatActivity {
         setContentView(R.layout.activity_act_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        b = new Bets();
+
 
         fab = findViewById(R.id.FabCadastrar);
 
@@ -60,6 +66,10 @@ public class ActMain extends AppCompatActivity {
         betAdapter= new BetAdapter(dados);
 
         recyclerView.setAdapter(betAdapter);
+
+
+
+
 
 
     }
@@ -90,4 +100,16 @@ public class ActMain extends AppCompatActivity {
         startActivityForResult(it, 0);
     }
 
+
+
+
+    // ao volta para tela inicial lista novamente o recivlerviewer
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        List<Bets> dados = betsRepositorio.buscarTodos();
+        betAdapter = new BetAdapter(dados);
+        recyclerView.setAdapter(betAdapter);
+
+    }
 }
