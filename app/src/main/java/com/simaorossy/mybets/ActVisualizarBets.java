@@ -1,7 +1,10 @@
 package com.simaorossy.mybets;
 
+import android.app.Instrumentation;
+import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -12,6 +15,7 @@ import com.simaorossy.mybets.dominio.entidade.Bets;
 import com.simaorossy.mybets.dominio.repositorio.BetsRepositorio;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -26,6 +30,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class ActVisualizarBets extends AppCompatActivity {
 
     private Bets bets = new Bets();
@@ -34,7 +40,16 @@ public class ActVisualizarBets extends AppCompatActivity {
     private BetsRepositorio betsRepositorio;
     private SQLiteDatabase conexao;
     private ImageView imageView;
+    private Drawable imgGols;
+    private Drawable imgCatao;
+    private Drawable imgEscanteio;
+    private Drawable imgGalgoBack;
+    private Drawable imgGalgoLay;
+    private Drawable imgVitoria;
 
+
+
+    private ImageView imgMercado;
     private TextView txtResultadoV;
     private TextView txtMercadoV;
     private TextView txtApostaV;
@@ -59,6 +74,15 @@ public class ActVisualizarBets extends AppCompatActivity {
 
         actVisualizar = findViewById(R.id.content_act_visualizar_bet);
         imageView     = findViewById(R.id.imgResultado);
+
+
+        imgCatao      = getResources().getDrawable(R.drawable.img_cartao);
+        imgEscanteio  = getResources().getDrawable(R.drawable.img_escanteio);
+        imgGalgoBack  = getResources().getDrawable(R.drawable.img_galgo_back);
+        imgGalgoLay   = getResources().getDrawable(R.drawable.img_galgo_lay);
+        imgVitoria    = getResources().getDrawable(R.drawable.img_vitoria);
+        imgGols       = getResources().getDrawable(R.drawable.img_gols);
+        imgMercado    = findViewById(R.id.imgResultado);
 
         txtResultadoV     = findViewById(R.id.txtResultadoV);
         txtMercadoV       = findViewById(R.id.txtMercadoV);
@@ -92,16 +116,37 @@ public class ActVisualizarBets extends AppCompatActivity {
                 //Snackbar.make(actVisualizar,"win", Snackbar.LENGTH_LONG).setAction("OK",null).show();
                 //Drawable drawable = getResources().getDrawable(R.drawable.green);
                 //imageView.setImageDrawable(drawable);
-                actVisualizar.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
-
+                actVisualizar.setBackgroundColor(Color.parseColor("#98FB98"));
             }else
             if(resultado.equals("loss")) {
                 //Snackbar.make(actVisualizar,"loss", Snackbar.LENGTH_LONG).setAction("OK",null).show();
                 //Drawable drawable = getResources().getDrawable(R.drawable.red);
                 //imageView.setImageDrawable(drawable);
-                actVisualizar.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
+                actVisualizar.setBackgroundColor(Color.parseColor("#FFA07A"));
 
             }
+
+            switch (bets.mercado){
+                case("cartao"):
+                    imgMercado.setImageDrawable(imgCatao);
+                    break;
+                case("escanteio"):
+                    imgMercado.setImageDrawable(imgEscanteio);
+                    break;
+                case("galgo back"):
+                    imgMercado.setImageDrawable(imgGalgoBack);
+                    break;
+                case("galgo lay"):
+                    imgMercado.setImageDrawable(imgGalgoLay);
+                    break;
+                case("gols"):
+                    imgMercado.setImageDrawable(imgGols);
+                    break;
+                case("vitoria"):
+                    imgMercado.setImageDrawable(imgVitoria);
+                    break;
+            }
+
 
             txtMercadoV.setText(bets.mercado);
             txtApostaV.setText(String.valueOf(bets.aposta));
@@ -159,18 +204,61 @@ public class ActVisualizarBets extends AppCompatActivity {
         switch (id){
 
             case R.id.actionEditar:
-                Toast.makeText(this, "action editar",Toast.LENGTH_LONG).show();
+                Intent it = new Intent(ActVisualizarBets.this, ActCadastrarBets.class);
+                it.putExtra("BETS", bets);
+                startActivityForResult(it, 2);
                 break;
 
             case R.id.actionExcluir:
-                Toast.makeText(this, "action excluir",Toast.LENGTH_LONG).show();
+                betsRepositorio.excluir(bets.codigo);
+                finish();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        bets = betsRepositorio.buscarBet(bets.codigo);
 
+        txtResultadoV.setText(bets.resultado);
+        resultado = bets.resultado;
+        if(resultado.equals("win")){
+            actVisualizar.setBackgroundColor(Color.parseColor("#98FB98"));
+        }else
+        if(resultado.equals("loss")) {
+            actVisualizar.setBackgroundColor(Color.parseColor("#FFA07A"));
+        }
 
+        switch (bets.mercado){
+            case("cartao"):
+                imgMercado.setImageDrawable(imgCatao);
+                break;
+            case("escanteio"):
+                imgMercado.setImageDrawable(imgEscanteio);
+                break;
+            case("galgo back"):
+                imgMercado.setImageDrawable(imgGalgoBack);
+                break;
+            case("galgo lay"):
+                imgMercado.setImageDrawable(imgGalgoLay);
+                break;
+            case("gols"):
+                imgMercado.setImageDrawable(imgGols);
+                break;
+            case("vitoria"):
+                imgMercado.setImageDrawable(imgVitoria);
+                break;
+        }
+        txtMercadoV.setText(bets.mercado);
+        txtApostaV.setText(String.valueOf(bets.aposta));
+        txtRetornoV.setText(String.valueOf(bets.retorno));
+        txtedtOddV.setText(String.valueOf(bets.odd));
+        txtedtDataV.setText(String.valueOf(bets.data));
+        txtedtDescricaoV.setText(bets.descricao);
+
+    }
 }

@@ -2,6 +2,8 @@ package com.simaorossy.mybets;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,15 +59,40 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
 
             //MUDAR COR DO LAYOUT VERDE OU VERMELHO
             if(bet.resultado.equals("win")){
-                // mudar a cor do layoutlinha_bet para verde
+
+                holder.layoutLinhaBet.setBackgroundColor(Color.parseColor("#7598FB98"));
+
             }else {
                 if (bet.resultado.equals("loss")) {
-                    //mudar a cor do layoutlinha_bet para vermelho
+
+                    holder.layoutLinhaBet.setBackgroundColor(Color.parseColor("#75FFA07A"));
+
                 }
 
             }
 
             //MUDAR IMAGEM BETS
+            switch (bet.mercado){
+                case("cartao"):
+                    holder.imgMercado.setImageDrawable(holder.imgCartao);
+                    break;
+                case("escanteio"):
+                    holder.imgMercado.setImageDrawable(holder.imgEscanteio);
+                    break;
+                case("galgo back"):
+                    holder.imgMercado.setImageDrawable(holder.imgGalgoBack);
+                    break;
+                case("galgo lay"):
+                    holder.imgMercado.setImageDrawable(holder.imgGalgoLay);
+                    break;
+                case("gols"):
+                    holder.imgMercado.setImageDrawable(holder.imgGols);
+                    break;
+                case("vitoria"):
+                    holder.imgMercado.setImageDrawable(holder.imgVitoria);
+                    break;
+
+            }
 
 
 
@@ -98,6 +125,13 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
         public TextView txtValorApostadoRCV;
         public TextView txtDataRCV;
         public ImageView imgMercado;
+        public Drawable imgCartao;
+        public Drawable imgEscanteio;
+        public Drawable imgGalgoBack;
+        public Drawable imgGalgoLay;
+        public Drawable imgGols;
+        public Drawable imgVitoria;
+
 
         public ViewHolderBets(@NonNull View itemView, final Context context) {
             super(itemView);
@@ -105,6 +139,16 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
             txtDataRCV          = (TextView)     itemView.findViewById(R.id.txtDataRCV);
             layoutLinhaBet      = (LinearLayout) itemView.findViewById(R.id.layoutlinha_bet);
             imgMercado          = (ImageView)    itemView.findViewById(R.id.image_view_bets);
+
+            imgCartao           = (Drawable) context.getResources().getDrawable(R.drawable.img_cartao);
+            imgEscanteio        = (Drawable) context.getResources().getDrawable(R.drawable.img_escanteio);
+            imgGalgoBack        = (Drawable) context.getResources().getDrawable(R.drawable.img_galgo_back);
+            imgGalgoLay         = (Drawable) context.getResources().getDrawable(R.drawable.img_galgo_lay);
+            imgGols             = (Drawable) context.getResources().getDrawable(R.drawable.img_gols);
+            imgVitoria          = (Drawable) context.getResources().getDrawable(R.drawable.img_vitoria);
+
+            //int RID = context.getApplicationContext().getResources().getIdentifier(imgGols,"drawable",Pack);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

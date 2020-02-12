@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">My Bets</string>
     <string name="title_activity_bet_main">MyBets</string>
-    <string name="title_activity_act_cadastrar_bets">ActCadastrarBets</string>
-    <string name="title_activity_act_visualizar_bets">ActVisualizarBets</string>
-    <string name="title_activity_act_editar_bets">ActEditarBets</string>
+    <string name="title_activity_act_cadastrar_bets">Preencha sua bet</string>
+    <string name="title_activity_act_visualizar_bets">Sua Bet</string>
     <string name="title_menu_ok">ok</string>
     <string name="menu_action_cadastrar">cadastrar</string>
     <string name="txtMercado">Mercado</string>

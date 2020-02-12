@@ -9,6 +9,7 @@
     tools:context=".ActCadastrarBets"
     tools:showIn="@layout/activity_act_cadastrar_bets">
 
+
     <TextView
         android:id="@+id/txtMercado"
         android:layout_width="0dp"
@@ -88,13 +89,17 @@
         app:layout_constraintTop_toBottomOf="@+id/edtData" />
 
     <CheckBox
+
         android:id="@+id/cbWin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onCheckboxClicked"
         android:text="Win"
+        android:textColorHighlight="#1F9724"
         app:layout_constraintStart_toStartOf="@+id/txtResultado"
-        app:layout_constraintTop_toBottomOf="@+id/txtResultado" />
+        app:layout_constraintTop_toBottomOf="@+id/txtResultado"
+
+        />
 
     <EditText
         android:id="@+id/edtMercado"

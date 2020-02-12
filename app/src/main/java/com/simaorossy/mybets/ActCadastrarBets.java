@@ -35,7 +35,7 @@ public class ActCadastrarBets extends AppCompatActivity {
     private EditText edtData;
     private EditText edtDescricao;
     public  String resultado = "loss";
-    Bets bets = new Bets();
+    private Bets bets;
     private BetsRepositorio betsRepositorio;
     private ConstraintLayout layoutAct_cadastrar_bets;
     private DadosOpenHelper dadosOpenHelper;
@@ -49,6 +49,7 @@ public class ActCadastrarBets extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        bets = new Bets();
         cbResultado = findViewById(R.id.cbWin);
         edtMercado  = findViewById(R.id.edtMercado);
         edtAposta   = findViewById(R.id.edtAposta);
@@ -60,11 +61,54 @@ public class ActCadastrarBets extends AppCompatActivity {
         layoutAct_cadastrar_bets = findViewById(R.id.layoutContent_act_cadastrar_bets);
 
         criarConexao();
+        verificaParametro();
 
     }
 
 
 
+    private void verificaParametro(){
+        Bundle bundle = getIntent().getExtras();
+
+
+
+        if ((bundle != null) && (bundle.containsKey("BETS"))){
+
+            bets = (Bets) bundle.getSerializable("BETS");
+
+
+           // boolean checked = ((CheckBox)view).isChecked();
+           // switch (view.getId()){
+            //    case R.id.cbWin:
+            //        if(checked){
+             //           resultado = "win";
+
+             //       }else{
+             //           resultado = "loss";
+
+             //       }
+           // }
+
+
+
+            if(bets.resultado.equals("win")){
+                cbResultado.setChecked(true);
+                resultado = "win";
+            }else {
+                cbResultado.setChecked(false);
+            }
+
+
+            edtMercado.setText(bets.mercado);
+            edtAposta.setText(String.valueOf(bets.aposta));
+            edtRetorno.setText(String.valueOf(bets.retorno));
+            edtOdd.setText(String.valueOf(bets.odd));
+            edtData.setText(bets.data);
+            edtDescricao.setText(bets.descricao);
+
+        }
+
+    }
 
     private void criarConexao(){
 
@@ -73,7 +117,7 @@ public class ActCadastrarBets extends AppCompatActivity {
 
             dadosOpenHelper = new DadosOpenHelper(this);
             conexao = dadosOpenHelper.getWritableDatabase();
-            Snackbar.make(layoutAct_cadastrar_bets,"banco de dados criado com sucesso", Snackbar.LENGTH_LONG).setAction("OK",null).show();
+
 
             betsRepositorio = new BetsRepositorio(conexao);
 
@@ -99,10 +143,10 @@ public class ActCadastrarBets extends AppCompatActivity {
             case R.id.cbWin:
                 if(checked){
                     resultado = "win";
-                    Toast.makeText(this,resultado,Toast.LENGTH_LONG).show();
+
                 }else{
                     resultado = "loss";
-                    Toast.makeText(this,resultado,Toast.LENGTH_LONG).show();
+
                 }
         }
 
@@ -116,8 +160,14 @@ public class ActCadastrarBets extends AppCompatActivity {
             //      + bets.retorno+", ODD " + bets.odd+", DATA " + bets.data+", DESCRICAO " +bets.descricao);
             //       dlg.show();
             try{
-               betsRepositorio.inserir(bets);
-               finish();
+
+                if(bets.codigo == 0) {
+                    betsRepositorio.inserir(bets);
+                    finish();
+                }else{
+                    betsRepositorio.alterar(bets);
+                    finish();
+                }
 
 
             }catch (SQLException ex){
@@ -136,6 +186,7 @@ public class ActCadastrarBets extends AppCompatActivity {
     //se estiver tudo ok vai retornar false
     public boolean validaCampo(){
         boolean res = false;
+
         String apostaa   = edtAposta.getText().toString();
         String retornoo  = edtRetorno.getText().toString();
         String oddd       = edtOdd.getText().toString();

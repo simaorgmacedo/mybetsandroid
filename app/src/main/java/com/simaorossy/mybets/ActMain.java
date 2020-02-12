@@ -82,7 +82,7 @@ public class ActMain extends AppCompatActivity {
 
             dadosOpenHelper = new DadosOpenHelper(this);
             conexao = dadosOpenHelper.getWritableDatabase();
-            Snackbar.make(layoutContent_act_main,"banco de dados criado com sucesso", Snackbar.LENGTH_LONG).setAction("OK",null).show();
+
 
 
 

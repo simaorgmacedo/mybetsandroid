@@ -10,10 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ActEditarBets"
-            android:label="@string/title_activity_act_editar_bets"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
             android:name=".ActVisualizarBets"
             android:label="@string/title_activity_act_visualizar_bets"
             android:theme="@style/AppTheme.NoActionBar" />
