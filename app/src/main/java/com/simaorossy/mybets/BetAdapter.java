@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,8 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
     @Override
     public BetAdapter.ViewHolderBets onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+
+
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
         View view = layoutInflater.inflate(R.layout.linha_bet, parent, false);
@@ -49,7 +53,33 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
 
             holder.txtValorApostadoRCV.setText(String.valueOf(bet.aposta));
             holder.txtDataRCV.setText(bet.data);
+
+
+            //MUDAR COR DO LAYOUT VERDE OU VERMELHO
+            if(bet.resultado.equals("win")){
+                // mudar a cor do layoutlinha_bet para verde
+            }else {
+                if (bet.resultado.equals("loss")) {
+                    //mudar a cor do layoutlinha_bet para vermelho
+                }
+
+            }
+
+            //MUDAR IMAGEM BETS
+
+
+
+
+
+
         }
+
+
+
+
+
+
+
 
     }
 
@@ -64,14 +94,17 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
 
 
     public class ViewHolderBets extends RecyclerView.ViewHolder{
-
+        private LinearLayout layoutLinhaBet ;
         public TextView txtValorApostadoRCV;
         public TextView txtDataRCV;
+        public ImageView imgMercado;
 
         public ViewHolderBets(@NonNull View itemView, final Context context) {
             super(itemView);
-            txtValorApostadoRCV = (TextView) itemView.findViewById(R.id.txtValorApostadoRCV);
-            txtDataRCV          = (TextView) itemView.findViewById(R.id.txtDataRCV);
+            txtValorApostadoRCV = (TextView)     itemView.findViewById(R.id.txtValorApostadoRCV);
+            txtDataRCV          = (TextView)     itemView.findViewById(R.id.txtDataRCV);
+            layoutLinhaBet      = (LinearLayout) itemView.findViewById(R.id.layoutlinha_bet);
+            imgMercado          = (ImageView)    itemView.findViewById(R.id.image_view_bets);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -8,4 +8,6 @@
     <string name="menu_action_cadastrar">cadastrar</string>
     <string name="txtMercado">Mercado</string>
     <string name="txtResultado">Resultado</string>
+    <string name="actionEditar">EDITAR</string>
+    <string name="actionExcluir">EXCLUIR</string>
 </resources>

@@ -11,11 +11,15 @@ import com.simaorossy.mybets.database.DadosOpenHelper;
 import com.simaorossy.mybets.dominio.entidade.Bets;
 import com.simaorossy.mybets.dominio.repositorio.BetsRepositorio;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -83,17 +87,21 @@ public class ActVisualizarBets extends AppCompatActivity {
 
 
             txtResultadoV.setText(bets.resultado);
-
-          /*  if(resultado == "win"){
-                 Drawable drawable = getResources().getDrawable(R.drawable.green);
-                imageView.setImageDrawable(drawable);
+            resultado = bets.resultado;
+            if(resultado.equals("win")){
+                //Snackbar.make(actVisualizar,"win", Snackbar.LENGTH_LONG).setAction("OK",null).show();
+                //Drawable drawable = getResources().getDrawable(R.drawable.green);
+                //imageView.setImageDrawable(drawable);
+                actVisualizar.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
 
             }else
-            if(resultado == "loss") {
-                Drawable drawable = getResources().getDrawable(R.drawable.red);
-                imageView.setImageDrawable(drawable);
+            if(resultado.equals("loss")) {
+                //Snackbar.make(actVisualizar,"loss", Snackbar.LENGTH_LONG).setAction("OK",null).show();
+                //Drawable drawable = getResources().getDrawable(R.drawable.red);
+                //imageView.setImageDrawable(drawable);
+                actVisualizar.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
 
-            }*/
+            }
 
             txtMercadoV.setText(bets.mercado);
             txtApostaV.setText(String.valueOf(bets.aposta));
@@ -126,5 +134,43 @@ public class ActVisualizarBets extends AppCompatActivity {
 
         }
     }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_act_visualizar_bets, menu);
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+
+
+
+
+    //metodo para definir o que sera feito ao clicar no menu
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id){
+
+            case R.id.actionEditar:
+                Toast.makeText(this, "action editar",Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.actionExcluir:
+                Toast.makeText(this, "action excluir",Toast.LENGTH_LONG).show();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 
 }
