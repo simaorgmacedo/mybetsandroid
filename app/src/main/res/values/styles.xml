@@ -5,20 +5,15 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#4F4F4F</item>
         <item name="colorPrimaryDark">#363636</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
-
-
-
-
-    </style>
-
-    <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
         <item name="colorAccent">#1F9724</item>
-        <item name="android:textColorSecondary">#363636</item>
-        
+
+
+
+
 
     </style>
+
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

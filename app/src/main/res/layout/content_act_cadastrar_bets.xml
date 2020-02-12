@@ -99,6 +99,8 @@
         app:layout_constraintStart_toStartOf="@+id/txtResultado"
         app:layout_constraintTop_toBottomOf="@+id/txtResultado"
 
+
+
         />
 
     <EditText
