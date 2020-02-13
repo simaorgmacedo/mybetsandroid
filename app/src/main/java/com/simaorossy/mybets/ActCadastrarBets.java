@@ -23,10 +23,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class ActCadastrarBets extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
+public class ActCadastrarBets extends AppCompatActivity {
+    private TextView txtData;
     private CheckBox cbResultado;
     private EditText edtMercado;
     private EditText edtAposta;
@@ -56,12 +61,21 @@ public class ActCadastrarBets extends AppCompatActivity {
         edtRetorno  = findViewById(R.id.edtRetorno);
         edtOdd      = findViewById(R.id.edtOdd);
         edtData     = findViewById(R.id.edtData);
+        txtData     =findViewById(R.id.txtData);
+
+
         edtDescricao= findViewById(R.id.edtDescricao);
 
         layoutAct_cadastrar_bets = findViewById(R.id.layoutContent_act_cadastrar_bets);
 
         criarConexao();
         verificaParametro();
+
+        if(bets.codigo==0) {
+
+            txtData.setVisibility(View.INVISIBLE);
+            edtData.setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -186,16 +200,42 @@ public class ActCadastrarBets extends AppCompatActivity {
     //se estiver tudo ok vai retornar false
     public boolean validaCampo(){
         boolean res = false;
-
+        String data;
         String apostaa   = edtAposta.getText().toString();
         String retornoo  = edtRetorno.getText().toString();
         String oddd       = edtOdd.getText().toString();
+
+
+
 
         String mercado   = edtMercado.getText().toString();
         double aposta    = 0;
         double retorno   = 0;
         double odd       = 0;
-        String data      = edtData.getText().toString();
+
+
+        if(bets.codigo == 0) {
+
+
+
+
+
+
+
+            SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat formataHora = new SimpleDateFormat("HH:mm:ss");
+            Date date = new Date();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            Date dateHora = cal.getTime();
+            data = formataData.format(date);
+            String hora = formataHora.format(dateHora);
+            data = data + "   " + hora;
+        }else{
+            data      = edtData.getText().toString();
+        }
+
+
         String descricao = edtDescricao.getText().toString();
 
         if(campoVazio(apostaa)){
@@ -213,13 +253,14 @@ public class ActCadastrarBets extends AppCompatActivity {
         if(campoVazio(oddd)){
             odd = 0;
         }else{
-            odd = Double.parseDouble(oddd);
+           odd = Double.parseDouble(oddd);
         }
 
         bets.resultado = resultado;
         bets.mercado   = mercado;
         bets.aposta    = aposta;
-        bets.retorno   = retorno;
+        bets.retorno = retorno;
+
         bets.odd       = odd;
         bets.data      = data;
         bets.descricao = descricao;
@@ -243,7 +284,8 @@ public class ActCadastrarBets extends AppCompatActivity {
                 dlg.setMessage("Aposta esta incorreta");
                 dlg.setNeutralButton("OK", null);
                 dlg.show();
-            }else
+            }
+            else
                 if( odd == 0 ){
                     res = true;
                     edtOdd.requestFocus();
@@ -252,15 +294,16 @@ public class ActCadastrarBets extends AppCompatActivity {
                     dlg.setNeutralButton("OK",null);
                     dlg.show();
 
-                }else
-                    if(campoVazio(data)){
-                        res = true;
-                        edtData.requestFocus();
-                        dlg.setTitle("Aviso");
-                        dlg.setMessage("Data esta incorreta");
-                        dlg.setNeutralButton("OK",null);
-                        dlg.show();
-                    }
+                }
+                //else
+                //    if(campoVazio(data)){
+                //       res = true;
+                //      edtData.requestFocus();
+                //      dlg.setTitle("Aviso");
+                //       dlg.setMessage("Data esta incorreta");
+                //       dlg.setNeutralButton("OK",null);
+                //      dlg.show();
+                //  }
 
 
 
