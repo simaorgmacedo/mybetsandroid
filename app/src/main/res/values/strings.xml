@@ -9,4 +9,16 @@
     <string name="txtResultado">Resultado</string>
     <string name="actionEditar">EDITAR</string>
     <string name="actionExcluir">EXCLUIR</string>
+
+    <string-array name="spinner_mercado_array">
+        <item>SELECIONE O MERCADO</item>
+        <item>CARTÃO</item>
+        <item>ESCANTEIO</item>
+        <item>GALGO BACK</item>
+        <item>GALGO LAY</item>
+        <item>GOLS</item>
+        <item>VITÓRIA</item>
+        <item>BASQUETE</item>
+    </string-array>
+
 </resources>

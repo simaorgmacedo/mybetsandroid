@@ -21,8 +21,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +34,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ActCadastrarBets extends AppCompatActivity {
+public class ActCadastrarBets extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private TextView txtData;
     private CheckBox cbResultado;
-    private EditText edtMercado;
+//    private EditText edtMercado;
     private EditText edtAposta;
     private EditText edtRetorno;
     private EditText edtOdd;
@@ -45,6 +49,10 @@ public class ActCadastrarBets extends AppCompatActivity {
     private ConstraintLayout layoutAct_cadastrar_bets;
     private DadosOpenHelper dadosOpenHelper;
     private SQLiteDatabase conexao;
+    private Spinner spMercado;
+    private String[] mercados;
+
+    private String mercado;
 
 
     @Override
@@ -56,7 +64,14 @@ public class ActCadastrarBets extends AppCompatActivity {
 
         bets = new Bets();
         cbResultado = findViewById(R.id.cbWin);
-        edtMercado  = findViewById(R.id.edtMercado);
+
+//                edtMercado  = findViewById(R.id.edtMercado);
+        spMercado   = findViewById(R.id.spMercado);
+        spMercado.setOnItemSelectedListener(this);
+
+
+
+
         edtAposta   = findViewById(R.id.edtAposta);
         edtRetorno  = findViewById(R.id.edtRetorno);
         edtOdd      = findViewById(R.id.edtOdd);
@@ -113,7 +128,7 @@ public class ActCadastrarBets extends AppCompatActivity {
             }
 
 
-            edtMercado.setText(bets.mercado);
+//            edtMercado.setText(bets.mercado);
             edtAposta.setText(String.valueOf(bets.aposta));
             edtRetorno.setText(String.valueOf(bets.retorno));
             edtOdd.setText(String.valueOf(bets.odd));
@@ -208,20 +223,15 @@ public class ActCadastrarBets extends AppCompatActivity {
 
 
 
-        String mercado   = edtMercado.getText().toString();
+//        String mercado   = edtMercado.getText().toString();
+
+
         double aposta    = 0;
         double retorno   = 0;
         double odd       = 0;
 
 
         if(bets.codigo == 0) {
-
-
-
-
-
-
-
             SimpleDateFormat formataData = new SimpleDateFormat("dd-MM-yyyy");
             SimpleDateFormat formataHora = new SimpleDateFormat("HH:mm:ss");
             Date date = new Date();
@@ -269,9 +279,9 @@ public class ActCadastrarBets extends AppCompatActivity {
 
         AlertDialog.Builder dlg = new AlertDialog.Builder(this);
 
-        if (campoVazio(mercado)){
+        if (mercado.equals("SELECIONE O MERCADO")){
             res = true;
-            edtMercado.requestFocus();
+            spMercado.requestFocus();
             dlg.setTitle("Aviso");
             dlg.setMessage("Mercado esta incorreto");
             dlg.setNeutralButton("OK",null);
@@ -359,4 +369,14 @@ public class ActCadastrarBets extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        mercado = parent.getSelectedItem().toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

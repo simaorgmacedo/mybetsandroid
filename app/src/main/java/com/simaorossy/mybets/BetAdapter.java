@@ -73,22 +73,22 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
 
             //MUDAR IMAGEM BETS
             switch (bet.mercado){
-                case("cartao"):
+                case("CARTÃO"):
                     holder.imgMercado.setImageDrawable(holder.imgCartao);
                     break;
-                case("escanteio"):
+                case("ESCANTEIO"):
                     holder.imgMercado.setImageDrawable(holder.imgEscanteio);
                     break;
-                case("galgo back"):
+                case("GALGO BACK"):
                     holder.imgMercado.setImageDrawable(holder.imgGalgoBack);
                     break;
-                case("galgo lay"):
+                case("GALGO LAY"):
                     holder.imgMercado.setImageDrawable(holder.imgGalgoLay);
                     break;
-                case("gols"):
+                case("GOLS"):
                     holder.imgMercado.setImageDrawable(holder.imgGols);
                     break;
-                case("vitoria"):
+                case("VITÓRIA"):
                     holder.imgMercado.setImageDrawable(holder.imgVitoria);
                     break;
 

@@ -40,10 +40,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Valor Apostado"
-        app:layout_constraintEnd_toEndOf="@+id/edtMercado"
+        app:layout_constraintEnd_toEndOf="@+id/spMercado"
         app:layout_constraintHorizontal_bias="0.61"
-        app:layout_constraintStart_toStartOf="@+id/edtMercado"
-        app:layout_constraintTop_toBottomOf="@+id/edtMercado" />
+        app:layout_constraintStart_toStartOf="@+id/spMercado"
+        app:layout_constraintTop_toBottomOf="@+id/spMercado" />
 
     <TextView
         android:id="@+id/txtRetorno"
@@ -103,6 +103,7 @@
 
         />
 
+<!--
     <EditText
         android:id="@+id/edtMercado"
         android:layout_width="0dp"
@@ -113,6 +114,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtMercado"
         app:layout_constraintTop_toBottomOf="@+id/txtMercado" />
+        -->
 
     <EditText
         android:id="@+id/edtAposta"
@@ -164,5 +166,14 @@
         app:layout_constraintEnd_toEndOf="@+id/txtDescricao"
         app:layout_constraintStart_toStartOf="@+id/txtDescricao"
         app:layout_constraintTop_toBottomOf="@+id/txtDescricao" />
+
+    <Spinner
+        android:id="@+id/spMercado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/txtMercado"
+        app:layout_constraintStart_toStartOf="@+id/txtMercado"
+        app:layout_constraintTop_toBottomOf="@+id/txtMercado"
+        android:entries="@array/spinner_mercado_array"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

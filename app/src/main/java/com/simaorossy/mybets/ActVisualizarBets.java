@@ -127,22 +127,22 @@ public class ActVisualizarBets extends AppCompatActivity {
             }
 
             switch (bets.mercado){
-                case("cartao"):
+                case("CARTÃO"):
                     imgMercado.setImageDrawable(imgCatao);
                     break;
-                case("escanteio"):
+                case("ESCANTEIO"):
                     imgMercado.setImageDrawable(imgEscanteio);
                     break;
-                case("galgo back"):
+                case("GALGO BACK"):
                     imgMercado.setImageDrawable(imgGalgoBack);
                     break;
-                case("galgo lay"):
+                case("GALGO LAY"):
                     imgMercado.setImageDrawable(imgGalgoLay);
                     break;
-                case("gols"):
+                case("GOLS"):
                     imgMercado.setImageDrawable(imgGols);
                     break;
-                case("vitoria"):
+                case("VITÓRIA"):
                     imgMercado.setImageDrawable(imgVitoria);
                     break;
             }
@@ -234,22 +234,22 @@ public class ActVisualizarBets extends AppCompatActivity {
         }
 
         switch (bets.mercado){
-            case("cartao"):
+            case("CARTÃO"):
                 imgMercado.setImageDrawable(imgCatao);
                 break;
-            case("escanteio"):
+            case("ESCANTEIO"):
                 imgMercado.setImageDrawable(imgEscanteio);
                 break;
-            case("galgo back"):
+            case("GALGO BACK"):
                 imgMercado.setImageDrawable(imgGalgoBack);
                 break;
-            case("galgo lay"):
+            case("GALGO LAY"):
                 imgMercado.setImageDrawable(imgGalgoLay);
                 break;
-            case("gols"):
+            case("GOLS"):
                 imgMercado.setImageDrawable(imgGols);
                 break;
-            case("vitoria"):
+            case("VITÓRIA"):
                 imgMercado.setImageDrawable(imgVitoria);
                 break;
         }
