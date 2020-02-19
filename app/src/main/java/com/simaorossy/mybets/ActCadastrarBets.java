@@ -50,6 +50,7 @@ public class ActCadastrarBets extends AppCompatActivity implements AdapterView.O
     private DadosOpenHelper dadosOpenHelper;
     private SQLiteDatabase conexao;
     private Spinner spMercado;
+    private TextView txtOdd;
     private String[] mercados;
 
     private String mercado;
@@ -77,6 +78,7 @@ public class ActCadastrarBets extends AppCompatActivity implements AdapterView.O
         edtOdd      = findViewById(R.id.edtOdd);
         edtData     = findViewById(R.id.edtData);
         txtData     =findViewById(R.id.txtData);
+        txtOdd      =findViewById(R.id.txtOdd);
 
 
         edtDescricao= findViewById(R.id.edtDescricao);
@@ -90,6 +92,8 @@ public class ActCadastrarBets extends AppCompatActivity implements AdapterView.O
 
             txtData.setVisibility(View.INVISIBLE);
             edtData.setVisibility(View.INVISIBLE);
+            txtOdd.setVisibility(View.INVISIBLE);
+            edtOdd.setVisibility(View.INVISIBLE);
         }
 
     }
@@ -176,6 +180,7 @@ public class ActCadastrarBets extends AppCompatActivity implements AdapterView.O
                 }else{
                     resultado = "loss";
 
+
                 }
         }
 
@@ -241,6 +246,7 @@ public class ActCadastrarBets extends AppCompatActivity implements AdapterView.O
             data = formataData.format(date);
             String hora = formataHora.format(dateHora);
             data = data + "   " + hora;
+
         }else{
             data      = edtData.getText().toString();
         }
@@ -255,16 +261,23 @@ public class ActCadastrarBets extends AppCompatActivity implements AdapterView.O
         }
 
         if (campoVazio(retornoo)){
-            retorno = 0;
+            odd = 0;
         }else{
             retorno = Double.parseDouble(retornoo);
         }
 
-        if(campoVazio(oddd)){
-            odd = 0;
-        }else{
-           odd = Double.parseDouble(oddd);
+        if(bets.codigo == 0) {
+            odd = retorno / aposta;
+
+         }else{
+            odd      = Double.parseDouble(edtOdd.getText().toString());
         }
+
+        //if(campoVazio(oddd)){
+        //    odd = 0;
+        //}else{
+        //   odd = Double.parseDouble(oddd);
+        //}
 
         bets.resultado = resultado;
         bets.mercado   = mercado;
@@ -295,16 +308,16 @@ public class ActCadastrarBets extends AppCompatActivity implements AdapterView.O
                 dlg.setNeutralButton("OK", null);
                 dlg.show();
             }
-            else
-                if( odd == 0 ){
-                    res = true;
-                    edtOdd.requestFocus();
-                    dlg.setTitle("Aviso");
-                    dlg.setMessage("ODD esta incorreta");
-                    dlg.setNeutralButton("OK",null);
-                    dlg.show();
+  //          else
+ //               if( odd == 0 ){
+ //                   res = true;
+ //                   edtOdd.requestFocus();
+ //                   dlg.setTitle("Aviso");
+ //                   dlg.setMessage("ODD esta incorreta");
+ //                   dlg.setNeutralButton("OK",null);
+ //                   dlg.show();
 
-                }
+ //               }
                 //else
                 //    if(campoVazio(data)){
                 //       res = true;
@@ -368,6 +381,7 @@ public class ActCadastrarBets extends AppCompatActivity implements AdapterView.O
 
 
     }
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

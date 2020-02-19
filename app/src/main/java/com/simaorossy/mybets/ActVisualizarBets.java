@@ -46,11 +46,13 @@ public class ActVisualizarBets extends AppCompatActivity {
     private Drawable imgGalgoBack;
     private Drawable imgGalgoLay;
     private Drawable imgVitoria;
+    private Drawable imgEmpate;
+    private Drawable imgBasquete;
 
 
 
     private ImageView imgMercado;
-    private TextView txtResultadoV;
+    //private TextView txtResultadoV;
     private TextView txtMercadoV;
     private TextView txtApostaV;
     private TextView txtRetornoV;
@@ -83,8 +85,10 @@ public class ActVisualizarBets extends AppCompatActivity {
         imgVitoria    = getResources().getDrawable(R.drawable.img_vitoria);
         imgGols       = getResources().getDrawable(R.drawable.img_gols);
         imgMercado    = findViewById(R.id.imgResultado);
+        imgEmpate     = getResources().getDrawable(R.drawable.img_empate);
+        imgBasquete   = getResources().getDrawable(R.drawable.img_basquete);
 
-        txtResultadoV     = findViewById(R.id.txtResultadoV);
+        //txtResultadoV     = findViewById(R.id.txtResultadoV);
         txtMercadoV       = findViewById(R.id.txtMercadoV);
         txtApostaV        = findViewById(R.id.txtApostaV);
         txtRetornoV       = findViewById(R.id.txtRetornoV);
@@ -110,19 +114,19 @@ public class ActVisualizarBets extends AppCompatActivity {
 
 
 
-            txtResultadoV.setText(bets.resultado);
+            //txtResultadoV.setText(bets.resultado);
             resultado = bets.resultado;
             if(resultado.equals("win")){
                 //Snackbar.make(actVisualizar,"win", Snackbar.LENGTH_LONG).setAction("OK",null).show();
                 //Drawable drawable = getResources().getDrawable(R.drawable.green);
                 //imageView.setImageDrawable(drawable);
-                actVisualizar.setBackgroundColor(Color.parseColor("#98FB98"));
+                actVisualizar.setBackgroundColor(Color.parseColor("#7598FB98"));
             }else
             if(resultado.equals("loss")) {
                 //Snackbar.make(actVisualizar,"loss", Snackbar.LENGTH_LONG).setAction("OK",null).show();
                 //Drawable drawable = getResources().getDrawable(R.drawable.red);
                 //imageView.setImageDrawable(drawable);
-                actVisualizar.setBackgroundColor(Color.parseColor("#FFA07A"));
+                actVisualizar.setBackgroundColor(Color.parseColor("#75FFA07A"));
 
             }
 
@@ -133,7 +137,7 @@ public class ActVisualizarBets extends AppCompatActivity {
                 case("ESCANTEIO"):
                     imgMercado.setImageDrawable(imgEscanteio);
                     break;
-                case("GALGO BACK"):
+                case("GALGO LAY PLACED"):
                     imgMercado.setImageDrawable(imgGalgoBack);
                     break;
                 case("GALGO LAY"):
@@ -144,6 +148,12 @@ public class ActVisualizarBets extends AppCompatActivity {
                     break;
                 case("VITÓRIA"):
                     imgMercado.setImageDrawable(imgVitoria);
+                    break;
+                case("BASQUETE"):
+                    imgMercado.setImageDrawable(imgBasquete);
+                    break;
+                case("EMPATE"):
+                    imgMercado.setImageDrawable(imgEmpate);
                     break;
             }
 
@@ -224,13 +234,13 @@ public class ActVisualizarBets extends AppCompatActivity {
 
         bets = betsRepositorio.buscarBet(bets.codigo);
 
-        txtResultadoV.setText(bets.resultado);
+        //txtResultadoV.setText(bets.resultado);
         resultado = bets.resultado;
         if(resultado.equals("win")){
-            actVisualizar.setBackgroundColor(Color.parseColor("#98FB98"));
+            actVisualizar.setBackgroundColor(Color.parseColor("#7598FB98"));
         }else
         if(resultado.equals("loss")) {
-            actVisualizar.setBackgroundColor(Color.parseColor("#FFA07A"));
+            actVisualizar.setBackgroundColor(Color.parseColor("#75FFA07A"));
         }
 
         switch (bets.mercado){
@@ -240,7 +250,7 @@ public class ActVisualizarBets extends AppCompatActivity {
             case("ESCANTEIO"):
                 imgMercado.setImageDrawable(imgEscanteio);
                 break;
-            case("GALGO BACK"):
+            case("GALGO LAY PLACED"):
                 imgMercado.setImageDrawable(imgGalgoBack);
                 break;
             case("GALGO LAY"):
@@ -252,6 +262,12 @@ public class ActVisualizarBets extends AppCompatActivity {
             case("VITÓRIA"):
                 imgMercado.setImageDrawable(imgVitoria);
                 break;
+            case("BASQUETE"):
+                imgMercado.setImageDrawable(imgBasquete);
+                break;
+            case("EMPATE"):
+                imgMercado.setImageDrawable(imgEmpate);
+                break;
         }
         txtMercadoV.setText(bets.mercado);
         txtApostaV.setText(String.valueOf(bets.aposta));
@@ -261,4 +277,7 @@ public class ActVisualizarBets extends AppCompatActivity {
         txtedtDescricaoV.setText(bets.descricao);
 
     }
+
+
+
 }

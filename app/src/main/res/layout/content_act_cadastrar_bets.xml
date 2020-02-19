@@ -16,6 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/txtMercado"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/txtResultado"
         app:layout_constraintStart_toStartOf="@+id/txtResultado"
         app:layout_constraintTop_toBottomOf="@+id/cbWin" />
@@ -30,6 +32,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/txtResultado"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,6 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Valor Apostado"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/spMercado"
         app:layout_constraintHorizontal_bias="0.61"
         app:layout_constraintStart_toStartOf="@+id/spMercado"
@@ -51,10 +57,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Valor Retornado"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/edtAposta"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtAposta"
         app:layout_constraintTop_toBottomOf="@+id/edtAposta" />
+
+
 
     <TextView
         android:id="@+id/txtOdd"
@@ -62,9 +72,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="ODD"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/edtRetorno"
         app:layout_constraintStart_toStartOf="@+id/edtRetorno"
         app:layout_constraintTop_toBottomOf="@+id/edtRetorno" />
+
 
     <TextView
         android:id="@+id/txtData"
@@ -72,6 +85,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Data"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/edtOdd"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtOdd"
@@ -83,6 +98,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Descrição"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/edtData"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtData"
@@ -94,14 +111,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onCheckboxClicked"
-        android:text="Win"
+        android:text="WIN"
         android:textColorHighlight="#1F9724"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/txtResultado"
-        app:layout_constraintTop_toBottomOf="@+id/txtResultado"
 
 
-
-        />
+        app:layout_constraintTop_toBottomOf="@+id/txtResultado" />
 
 <!--
     <EditText
@@ -129,6 +145,7 @@
 
     <EditText
         android:id="@+id/edtRetorno"
+        android:digits="0123456789.-"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"

@@ -53,7 +53,7 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
 
             Bets bet = dados.get(position);
 
-            holder.txtValorApostadoRCV.setText(String.valueOf(bet.aposta));
+            holder.txtValorApostadoRCV.setText("VALOR DA APOSTA:   " + String.valueOf(bet.aposta));
             holder.txtDataRCV.setText(bet.data);
 
 
@@ -79,7 +79,7 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
                 case("ESCANTEIO"):
                     holder.imgMercado.setImageDrawable(holder.imgEscanteio);
                     break;
-                case("GALGO BACK"):
+                case("GALGO LAY PLACED"):
                     holder.imgMercado.setImageDrawable(holder.imgGalgoBack);
                     break;
                 case("GALGO LAY"):
@@ -90,6 +90,12 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
                     break;
                 case("VITÓRIA"):
                     holder.imgMercado.setImageDrawable(holder.imgVitoria);
+                    break;
+                case("BASQUETE"):
+                    holder.imgMercado.setImageDrawable(holder.imgBasquete);
+                    break;
+                case("EMPATE"):
+                    holder.imgMercado.setImageDrawable(holder.imgEmpate);
                     break;
 
             }
@@ -131,7 +137,8 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
         public Drawable imgGalgoLay;
         public Drawable imgGols;
         public Drawable imgVitoria;
-
+        private Drawable imgEmpate;
+        private Drawable imgBasquete;
 
         public ViewHolderBets(@NonNull View itemView, final Context context) {
             super(itemView);
@@ -146,7 +153,8 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
             imgGalgoLay         = (Drawable) context.getResources().getDrawable(R.drawable.img_galgo_lay);
             imgGols             = (Drawable) context.getResources().getDrawable(R.drawable.img_gols);
             imgVitoria          = (Drawable) context.getResources().getDrawable(R.drawable.img_vitoria);
-
+            imgEmpate           = (Drawable) context.getResources().getDrawable(R.drawable.img_empate);
+            imgBasquete         = (Drawable) context.getResources().getDrawable(R.drawable.img_basquete);
             //int RID = context.getApplicationContext().getResources().getIdentifier(imgGols,"drawable",Pack);
 
 

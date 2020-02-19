@@ -45,8 +45,8 @@ public class ActMain extends AppCompatActivity {
         setContentView(R.layout.activity_act_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Drawable background = getDrawable(R.drawable.your_image);
-        background.setAlpha(95);
+       // Drawable background = getDrawable(R.drawable.your_image);
+       // background.setAlpha(95);
 
         b = new Bets();
 

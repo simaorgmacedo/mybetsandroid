@@ -11,14 +11,19 @@
     <string name="actionExcluir">EXCLUIR</string>
 
     <string-array name="spinner_mercado_array">
+
         <item>SELECIONE O MERCADO</item>
-        <item>CARTÃO</item>
-        <item>ESCANTEIO</item>
-        <item>GALGO BACK</item>
+        <item>GALGO LAY PLACED</item>
         <item>GALGO LAY</item>
+        <item>ESCANTEIO</item>
+        <item>EMPATE</item>
+        <item>CARTÃO</item>
         <item>GOLS</item>
         <item>VITÓRIA</item>
         <item>BASQUETE</item>
+
     </string-array>
+    <color name="bg">#808080</color>
+    <color name="bg2">#A9A9A9</color>
 
 </resources>
