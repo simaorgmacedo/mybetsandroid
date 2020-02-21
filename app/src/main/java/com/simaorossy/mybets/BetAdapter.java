@@ -80,7 +80,7 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
                     holder.imgMercado.setImageDrawable(holder.imgEscanteio);
                     break;
                 case("GALGO LAY PLACED"):
-                    holder.imgMercado.setImageDrawable(holder.imgGalgoBack);
+                    holder.imgMercado.setImageDrawable(holder.imgGalgoLayPlaced);
                     break;
                 case("GALGO LAY"):
                     holder.imgMercado.setImageDrawable(holder.imgGalgoLay);
@@ -96,6 +96,12 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
                     break;
                 case("EMPATE"):
                     holder.imgMercado.setImageDrawable(holder.imgEmpate);
+                    break;
+                case("GALGO AVB"):
+                    holder.imgMercado.setImageDrawable(holder.imgGalgoAvb);
+                    break;
+                case("GALGO BACK"):
+                    holder.imgMercado.setImageDrawable(holder.imgGalgoBack);
                     break;
 
             }
@@ -137,6 +143,8 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
         public Drawable imgGalgoLay;
         public Drawable imgGols;
         public Drawable imgVitoria;
+        public Drawable imgGalgoAvb;
+        public Drawable imgGalgoLayPlaced;
         private Drawable imgEmpate;
         private Drawable imgBasquete;
 
@@ -155,6 +163,8 @@ public class BetAdapter extends RecyclerView.Adapter<BetAdapter.ViewHolderBets> 
             imgVitoria          = (Drawable) context.getResources().getDrawable(R.drawable.img_vitoria);
             imgEmpate           = (Drawable) context.getResources().getDrawable(R.drawable.img_empate);
             imgBasquete         = (Drawable) context.getResources().getDrawable(R.drawable.img_basquete);
+            imgGalgoAvb         = (Drawable) context.getResources().getDrawable(R.drawable.img_galgo_avb);
+            imgGalgoLayPlaced   = (Drawable) context.getResources().getDrawable(R.drawable.img_galgo_lay_placed);
             //int RID = context.getApplicationContext().getResources().getIdentifier(imgGols,"drawable",Pack);
 
 

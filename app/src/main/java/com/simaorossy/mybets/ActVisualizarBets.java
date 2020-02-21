@@ -48,7 +48,8 @@ public class ActVisualizarBets extends AppCompatActivity {
     private Drawable imgVitoria;
     private Drawable imgEmpate;
     private Drawable imgBasquete;
-
+    private Drawable ImgGalgoLayPlaced;
+    private Drawable imgGalgoAvg;
 
 
     private ImageView imgMercado;
@@ -86,6 +87,8 @@ public class ActVisualizarBets extends AppCompatActivity {
         imgGols       = getResources().getDrawable(R.drawable.img_gols);
         imgMercado    = findViewById(R.id.imgResultado);
         imgEmpate     = getResources().getDrawable(R.drawable.img_empate);
+        imgGalgoAvg   = getResources().getDrawable(R.drawable.img_galgo_avb);
+        ImgGalgoLayPlaced = getResources().getDrawable(R.drawable.img_galgo_lay_placed);
         imgBasquete   = getResources().getDrawable(R.drawable.img_basquete);
 
         //txtResultadoV     = findViewById(R.id.txtResultadoV);
@@ -138,7 +141,7 @@ public class ActVisualizarBets extends AppCompatActivity {
                     imgMercado.setImageDrawable(imgEscanteio);
                     break;
                 case("GALGO LAY PLACED"):
-                    imgMercado.setImageDrawable(imgGalgoBack);
+                    imgMercado.setImageDrawable(ImgGalgoLayPlaced);
                     break;
                 case("GALGO LAY"):
                     imgMercado.setImageDrawable(imgGalgoLay);
@@ -154,6 +157,12 @@ public class ActVisualizarBets extends AppCompatActivity {
                     break;
                 case("EMPATE"):
                     imgMercado.setImageDrawable(imgEmpate);
+                    break;
+                case("GALGO AVB"):
+                    imgMercado.setImageDrawable(imgGalgoAvg);
+                    break;
+                case("GALGO BACK"):
+                    imgMercado.setImageDrawable(imgGalgoBack);
                     break;
             }
 
@@ -251,7 +260,7 @@ public class ActVisualizarBets extends AppCompatActivity {
                 imgMercado.setImageDrawable(imgEscanteio);
                 break;
             case("GALGO LAY PLACED"):
-                imgMercado.setImageDrawable(imgGalgoBack);
+                imgMercado.setImageDrawable(ImgGalgoLayPlaced);
                 break;
             case("GALGO LAY"):
                 imgMercado.setImageDrawable(imgGalgoLay);
@@ -267,6 +276,12 @@ public class ActVisualizarBets extends AppCompatActivity {
                 break;
             case("EMPATE"):
                 imgMercado.setImageDrawable(imgEmpate);
+                break;
+            case("GALGO AVB"):
+                imgMercado.setImageDrawable(imgGalgoAvg);
+                break;
+            case("GALGO BACK"):
+                imgMercado.setImageDrawable(imgGalgoBack);
                 break;
         }
         txtMercadoV.setText(bets.mercado);
